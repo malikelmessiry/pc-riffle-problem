@@ -1,11 +1,24 @@
 def riffle(words):
-    # Your solution here!
-    pass
+    riffled = [] 
+    max_len = 0
+    max_idx = None 
 
+    # find max_len and max_idx
+    for i, word in enumerate(words):
+        if len(word) >= max_len:
+            max_len = len(word)
+            max_idx = i
 
-words = ["abc", "xyz"]
-expected = "axbycz"
-assert riffle(words) == expected
+    # iterate over each letter position
+    for letter_idx in range(max_len):
+        # iterate over each word
+        for word_idx, word in enumerate(words):
+            riffled.append(word[letter_idx % len(word)])
+            if letter_idx == max_len-1 and word_idx == max_idx:
+                break
+
+    return "".join(riffled)
+
 
 words = ["abc", "mno", "xyz"]
 expected = "amxbnycoz"
